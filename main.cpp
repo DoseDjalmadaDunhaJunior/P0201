@@ -100,6 +100,7 @@ void repeteco(char* vet){
     cout<<rep<<endl;
 }
 
+//para facilitar a programação
 void populaExemplo(){
     vars[0][0] = 'a';
     vars[0][1] = '1';
@@ -115,18 +116,68 @@ void populaExemplo(){
     vars[2][3] = '\n';
 }
 
-void populaMatriz(){
-
+//para facilitar a programação
+void vetorExemplo(char* v) {
+    v[0] = 'a';
+    v[1] = '1';
+    v[2] = '2';
+    v[3] = ' ';
+    v[4] = 'b';
+    v[5] = '3';
+    v[6] = '4';
+    v[7] = ' ';
+    v[8] = 'c';
+    v[9] = '5';
+    v[10] = '6';
+    v[11] = '\0';
 }
 
-int main() {
+void populaMatriz(char* vet,int* a) {
+    int c = 0;
+    int i = *a, j = 0;
+    for (j = 0; j < 3; j++) {
+        vars[i][j] = vet[c];
+        c++;
+
+    }
+    i++;
+    *a = i;
+}
+
+void imprimeMatriz(){
+    int i = 0;
+    int j = 0;
+    for (i = 0; i < 3 ; i++) {
+        for (j = 0; j < 3 ; j++) {
+            cout<<vars[i][j];
+        }
+        puts("");
+    }
+}
+
+//sera copiado ao main mais tarde
+void logicaParaSalvarNaMatriz(){
     puts("insira as variavies e numeros (conjuntos separados por espaço)");
     char vet[num];
     char ver[num];
-    scanf("%[^\n]", vet);
-    fflush(stdin);
-    pegaParcela(vet,ver,0,7);
-    cout<<ver<<endl;
+    int i = 0;
+    vetorExemplo(vet);
+    //scanf("%[^\n]", vet);
+    //fflush(stdin);
+    pegaParcela(vet,ver,0,0);
+    populaMatriz(ver,&i);
 
+    pegaParcela(vet,ver,0,3);
+    populaMatriz(ver,&i);
+
+    pegaParcela(vet,ver,0,7);
+    populaMatriz(ver,&i);
+
+    imprimeMatriz();
+}
+
+int main() {
+
+    //cout<<ver<<endl;
     return 0;
 }

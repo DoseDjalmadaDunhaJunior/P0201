@@ -1,18 +1,4 @@
-/private/var/folders/96/r0rn1p052z7g29vgyr64x9j40000gn/T/AppTranslocation/103609C2-C3A2-40F8-9891-DE7B58C87E37/d/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" "/Volumes/HD_EXTERNO/paradas_de_algoritmo/Sexto _semestre/compiladores/P0201"
--- The C compiler identification is AppleClang 10.0.1.10010046
--- The CXX compiler identification is AppleClang 10.0.1.10010046
--- Check for working C compiler: /Volumes/HD_EXTERNO/computador/web/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc
--- Check for working C compiler: /Volumes/HD_EXTERNO/computador/web/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -- works
--- Detecting C compiler ABI info
--- Detecting C compiler ABI info - done
--- Detecting C compile features
--- Detecting C compile features - done
--- Check for working CXX compiler: /Volumes/HD_EXTERNO/computador/web/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++
--- Check for working CXX compiler: /Volumes/HD_EXTERNO/computador/web/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ -- works
--- Detecting CXX compiler ABI info
--- Detecting CXX compiler ABI info - done
--- Detecting CXX compile features
--- Detecting CXX compile features - done
+/Volumes/HD_EXTERNO/computador/web/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" "/Volumes/HD_EXTERNO/paradas_de_algoritmo/Sexto _semestre/compiladores/P0201"
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /Volumes/HD_EXTERNO/paradas_de_algoritmo/Sexto _semestre/compiladores/P0201/cmake-build-debug

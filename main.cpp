@@ -2,14 +2,13 @@
 #define num 100
 using namespace std;
 // espaco == 32
-
 /*transdutor que reconhece numeros inteiros e variaveis
 alem de construir uma matriz char em que cada linha
  devera ter a ocorrencia de cada variavel A saida sera:
  */
 
-
 char vars[num][num];
+int vl = 0;
 char temps[num];
 int tempn;
 char v;
@@ -28,6 +27,21 @@ int dica() {
 
         }
     }
+}
+
+bool buscaRepeteco(char* vet){
+    int k = 0;
+    for (k = 0; vet[k] != '\0'; k++) {
+
+    }
+    for (int i = 0; i < vl; i++) {
+        for (int j = 0; vet[j] != '\0' ; j++) {
+            if(vars[i][j] == vet[j]){
+
+            }
+        }
+    }
+    return true;
 }
 
 //converte char para int
@@ -117,13 +131,13 @@ void vetorExemplo(char* v) {
     v[1] = '1';
     v[2] = '2';
     v[3] = ' ';
-    v[4] = ' ';
+    v[4] = 'b';
     v[5] = '3';
     v[6] = '4';
     v[7] = ' ';
-    v[8] = 'c';
-    v[9] = '5';
-    v[10] = '6';
+    v[8] = 'a';
+    v[9] = '1';
+    v[10] = '2';
     v[11] = '\0';
 }
 
@@ -160,6 +174,7 @@ void populaMatriz(char* vet,int* a) {
 
     }
     i++;
+    vl = vl +1;
     *a = i;
 }
 
@@ -196,6 +211,28 @@ void logicaParaSalvarNaMatriz(){
 }
 
 int main() {
+    puts("insira as variavies e numeros (conjuntos separados por espaço)");
+    char vet[num];
+    char ver[num];
+    int i = 0;
+    vetorExemplo(vet);
+    //scanf("%[^\n]", vet);
+    //fflush(stdin);
+    pegaParcela(vet,ver,0,0);
+    if(buscaRepeteco(ver)) {
+        populaMatriz(ver, &i);
+    }
 
+    pegaParcela(vet,ver,0,3);
+    if(buscaRepeteco(ver)) {
+        populaMatriz(ver, &i);
+    }
+
+    pegaParcela(vet,ver,0,7);
+    if(buscaRepeteco(ver)) {
+        populaMatriz(ver, &i);
+    }
+
+    imprimeMatriz();
     return 0;
 }

@@ -9,8 +9,8 @@ alem de construir uma matriz char em que cada linha
  */
 
 
-char vars[100][100];
-char temps[100];
+char vars[num][num];
+char temps[num];
 int tempn;
 char v;
 int cg = 0;
@@ -41,7 +41,6 @@ int converte(char* n, int tam){
     int ver;
     for (int i = 0; i < tam; i++) {
         ver = (n[i] - 48) * c;
-        cout<<ver<<endl;
         s = ((n[i] - 48) * c) + s;
         c = c/10;
     }
@@ -49,16 +48,12 @@ int converte(char* n, int tam){
 }
 
 //pega apenas a parcela do numero
-int pegaN(char* vet){
-    char n[num];
+int pegaN(char* n){
     char aux[num];
     int i = 0;
-    cin>>n;
     for (i = 0 ; (n[i] <= '9' && n[i] >= '0' ); i++) {
         aux[i] = n[i];
     }
-    cout<<i<<endl;
-    cout<<aux<<endl;
     return converte(aux,i);
 }
 
@@ -122,7 +117,7 @@ void vetorExemplo(char* v) {
     v[1] = '1';
     v[2] = '2';
     v[3] = ' ';
-    v[4] = 'b';
+    v[4] = ' ';
     v[5] = '3';
     v[6] = '4';
     v[7] = ' ';
@@ -130,6 +125,30 @@ void vetorExemplo(char* v) {
     v[9] = '5';
     v[10] = '6';
     v[11] = '\0';
+}
+
+void pegarNumerosVetor(){
+    char txt[num];
+    char resp[num];
+    vetorExemplo(txt);
+    int cont = 1, c = 0;
+    for (int i = 0; txt[i] != '\0'; i++) {
+        if ((cont != 0) && ((txt[i] == ' '))) {
+            cont = 1;
+        } else if ((txt[i] == ' ')) {
+            cont = i;
+        } else if ((txt[i] > '9') || (txt)[i] < '0') {
+            cont = 0;
+            c = 0;
+        } else if ((cont != 0) && (txt[i] <= '9') && (txt[i] >= '0')) {
+            resp[c] = txt[i];
+            c++;
+        }
+    }
+    //cout<<pegaN(resp)<<endl;
+    temps[0] = pegaN(resp);
+    //cout<<temps[0]<<endl;
+    printf("%i\n", temps[0]);
 }
 
 void populaMatriz(char* vet,int* a) {
@@ -178,6 +197,5 @@ void logicaParaSalvarNaMatriz(){
 
 int main() {
 
-    //cout<<ver<<endl;
     return 0;
 }

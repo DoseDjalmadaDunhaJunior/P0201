@@ -13,7 +13,6 @@ char vars[100][100];
 char temps[100];
 int tempn;
 char v;
-int temp;
 int cg = 0;
 
 int dica() {
@@ -63,30 +62,71 @@ int pegaN(char* vet){
     return converte(aux,i);
 }
 
-void coisa(char ent){
-
-}
-
-int main() {
-    puts("insira as variavies e numeros (conjuntos separados por espaço)");
-    char vet[num];
-    char temp[num];
-    int j = 0;
+//pega a parcela a12 ate o espaco, depois le o resto, dividindo
+void pegaParcela(char* vet,char* temp,int j, int i){
+    //int j = 0;
     int c = 0;
-    //cin >> vet;
-    scanf("%[^\n]", vet);
-    fflush(stdin);
-
-    for (int i = 0; i < 9; i++) {
+    if(vet[i] == 32){
+        i++;
+    }
+    for (i; vet[i] != '\0'; i++) {
         if (vet[i] == 32) {
-            c = i;
+            c = (i+1);
             temp[j] = '\0';
+            return;
         }
         else{
             temp[(j-c)] = vet[i];
         }
         j++;
     }
-    cout<<temp<<endl;
+    //cout<<temp<<endl;
+}
+
+// a funcao abaixo tem que ser analizada
+void repeteco(char* vet){
+    char aux[num];
+    scanf("%[^\n]", vet);
+    fflush(stdin);
+    int rep = 0;
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+
+        }
+        if(vars[i] == vet){
+            rep++;
+        }
+    }
+    cout<<rep<<endl;
+}
+
+void populaExemplo(){
+    vars[0][0] = 'a';
+    vars[0][1] = '1';
+    vars[0][2] = '2';
+    vars[0][3] = '\n';
+    vars[1][0] = 'b';
+    vars[1][1] = '3';
+    vars[1][2] = '4';
+    vars[1][3] = '\n';
+    vars[2][0] = 'c';
+    vars[2][1] = '5';
+    vars[2][2] = '6';
+    vars[2][3] = '\n';
+}
+
+void populaMatriz(){
+
+}
+
+int main() {
+    puts("insira as variavies e numeros (conjuntos separados por espaço)");
+    char vet[num];
+    char ver[num];
+    scanf("%[^\n]", vet);
+    fflush(stdin);
+    pegaParcela(vet,ver,0,7);
+    cout<<ver<<endl;
+
     return 0;
 }

@@ -30,18 +30,24 @@ int dica() {
 }
 
 bool buscaRepeteco(char* vet){
-    int k = 0;
+    int k = 0; // é o tamanho de vet
+    int c = 0;
     for (k = 0; vet[k] != '\0'; k++) {
 
     }
     for (int i = 0; i < vl; i++) {
         for (int j = 0; vet[j] != '\0' ; j++) {
             if(vars[i][j] == vet[j]){
-
+                c++;
             }
         }
     }
-    return true;
+    if(c == k){
+        return false;
+    }
+    else {
+        return true;
+    }
 }
 
 //converte char para int

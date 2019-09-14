@@ -25,10 +25,11 @@ int tamanho(char* vet){
     return i;
 }
 
-bool buscaRepeteco(char* vet){
+int buscaRepeteco(char* vet){
     int k = tamanho(vet); // é o tamanho de vet
     int c = 0;
-    for (int i = 0; i < vl; i++) {
+    int i = 0;
+    for (i = 0; i < vl; i++) {
         for (int j = 0; vet[j] != '\0' ; j++) {
             if(vars[i][j] == vet[j]){
                 c++;
@@ -36,10 +37,10 @@ bool buscaRepeteco(char* vet){
         }
     }
     if(c == k){
-        return false;
+        return i;
     }
     else {
-        return true;
+        return -1;
     }
 }
 
@@ -70,9 +71,6 @@ int pegaN(char* n){
     return converte(aux,i);
 }
 
-void corrigeErro(){
-
-}
 //pega a parcela a12 ate o espaco, depois le o resto, dividindo
 void pegaParcela(char* vet,char* temp, int* esp){
     int j = 0;
@@ -115,7 +113,7 @@ void populaExemplo(){
 
 //para facilitar a programação
 void vetorExemplo(char* v) {
-    /*
+
     v[0] = 'a';
     v[1] = '1';
     v[2] = '2';
@@ -131,14 +129,14 @@ void vetorExemplo(char* v) {
     v[12] = '7';
     v[13] = '8';
     v[14] = ' ';
-    v[15] = 'e';
+    v[15] = 'a';
     v[16] = '1';
     v[17] = '2';
     v[18] = ' ';
     v[19] = 'd';
     v[20] = '9';
     v[21] = '\0';
-     */
+    /*
     v[0] = 'a';
     v[1] = '1';
     v[2] = '2';
@@ -162,6 +160,7 @@ void vetorExemplo(char* v) {
     v[20] = 'd';
     v[21] = '2';
     v[22] = '\0';
+     */
 }
 
 void pegarNumerosVetor(){
@@ -197,14 +196,17 @@ void populaMatriz(char* vet,int* a) {
     for (k = 0; (vet[k] != 0) && (vet[k] != 32); k++) {
 
     }
+
     if(vet[0] <= '9' && vet[0] >= '0'){
         for (l; ((vet[l] <= '9') && (vet[l] >= '0')) ; l++) {
-
         }
+        resp[0] = converte(vet,k);
+        cout<<converte(vet,k)<<endl;
     }
     c = l;
 
     for (j = 0; j < k; j++) {
+        resp[i] = -1;
         vars[i][j] = vet[c];
         c++;
 
@@ -225,30 +227,9 @@ void imprimeMatriz(){
     }
 }
 
-//sera copiado ao main mais tarde
-void logicaParaSalvarNaMatriz(){
-    puts("insira as variavies e numeros (conjuntos separados por espaço)");
-    char vet[num];
-    char ver[num];
-    int i = 0;
-    int esp = 0;
-    vetorExemplo(vet);
-    //scanf("%[^\n]", vet);
-    //fflush(stdin);
-    pegaParcela(vet,ver,&esp);
-    populaMatriz(ver,&i);
-
-    pegaParcela(vet,ver,&esp);
-    populaMatriz(ver,&i);
-
-    pegaParcela(vet,ver,&esp);
-    populaMatriz(ver,&i);
-
-    imprimeMatriz();
-}
-
-void logicaAndar(){
-
+void imprimeCerto(){
+    for (int i = 0; i < vl; i++) {
+    }
 }
 
 int main() {
@@ -263,14 +244,14 @@ int main() {
     int a = -1,b = esp;
     while(a != b){
         pegaParcela(vet,ver,&esp);
-        if(buscaRepeteco(ver)) {
+        if(buscaRepeteco(ver) == -1) {
             populaMatriz(ver, &i);
         }
         a = b;
         b = esp;
     }
+    //cout<<vl<<endl;
     imprimeMatriz();
-
 
     return 0;
 }

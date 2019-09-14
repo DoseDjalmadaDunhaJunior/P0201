@@ -9,25 +9,12 @@ alem de construir uma matriz char em que cada linha
 
 char vars[num][num];
 int vl = 0;
+int vc = 0;
 char temps[num];
+int resp[num];
 int tempn;
 char v;
 int cg = 0;
-
-int dica() {
-    for (int i = 0; i <= 2; i++) { // 2 == p
-        if (temps[i], vars[i]) {
-            return i;
-        }
-        else{
-            vars[i][0] = temps[i];
-            return i;
-        }
-        {
-
-        }
-    }
-}
 
 bool buscaRepeteco(char* vet){
     int k = 0; // é o tamanho de vet
@@ -98,23 +85,6 @@ void pegaParcela(char* vet,char* temp,int j, int i){
     //cout<<temp<<endl;
 }
 
-// a funcao abaixo tem que ser analizada
-void repeteco(char* vet){
-    char aux[num];
-    scanf("%[^\n]", vet);
-    fflush(stdin);
-    int rep = 0;
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
-
-        }
-        if(vars[i] == vet){
-            rep++;
-        }
-    }
-    cout<<rep<<endl;
-}
-
 //para facilitar a programação
 void populaExemplo(){
     vars[0][0] = 'a';
@@ -134,16 +104,16 @@ void populaExemplo(){
 //para facilitar a programação
 void vetorExemplo(char* v) {
     v[0] = 'a';
-    v[1] = '1';
-    v[2] = '2';
+    v[1] = 'b';
+    v[2] = '7';
     v[3] = ' ';
     v[4] = 'b';
     v[5] = '3';
     v[6] = '4';
     v[7] = ' ';
-    v[8] = 'a';
-    v[9] = '1';
-    v[10] = '2';
+    v[8] = 'c';
+    v[9] = '7';
+    v[10] = '8';
     v[11] = '\0';
 }
 
@@ -174,7 +144,20 @@ void pegarNumerosVetor(){
 void populaMatriz(char* vet,int* a) {
     int c = 0;
     int i = *a, j = 0;
-    for (j = 0; j < 3; j++) {
+
+    int k = 0;
+    int l = 0;
+    for (k = 0; (vet[k] != 0) && (vet[k] != 32); k++) {
+
+    }
+    if(vet[0] <= '9' && vet[0] >= '0'){
+        for (l; ((vet[l] <= '9') && (vet[l] >= '0')) ; l++) {
+
+        }
+    }
+    c = l;
+
+    for (j = 0; j < k; j++) {
         vars[i][j] = vet[c];
         c++;
 
@@ -187,8 +170,8 @@ void populaMatriz(char* vet,int* a) {
 void imprimeMatriz(){
     int i = 0;
     int j = 0;
-    for (i = 0; i < 3 ; i++) {
-        for (j = 0; j < 3 ; j++) {
+    for (i = 0; i < vl ; i++) {
+        for (j = 0; vars[i][j] != '\0' ; j++) {
             cout<<vars[i][j];
         }
         puts("");
@@ -228,17 +211,17 @@ int main() {
     if(buscaRepeteco(ver)) {
         populaMatriz(ver, &i);
     }
-
     pegaParcela(vet,ver,0,3);
     if(buscaRepeteco(ver)) {
         populaMatriz(ver, &i);
     }
-
     pegaParcela(vet,ver,0,7);
     if(buscaRepeteco(ver)) {
         populaMatriz(ver, &i);
     }
 
     imprimeMatriz();
+
+
     return 0;
 }

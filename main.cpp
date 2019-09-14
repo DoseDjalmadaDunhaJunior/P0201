@@ -16,12 +16,18 @@ int tempn;
 char v;
 int cg = 0;
 
-bool buscaRepeteco(char* vet){
-    int k = 0; // é o tamanho de vet
-    int c = 0;
-    for (k = 0; vet[k] != '\0'; k++) {
+// para obter o tamanho de um vetor char
+int tamanho(char* vet){
+    int i = 0;
+    for (i = 0; vet[i] != '\0' ; i++) {
 
     }
+    return i;
+}
+
+bool buscaRepeteco(char* vet){
+    int k = tamanho(vet); // é o tamanho de vet
+    int c = 0;
     for (int i = 0; i < vl; i++) {
         for (int j = 0; vet[j] != '\0' ; j++) {
             if(vars[i][j] == vet[j]){
@@ -64,10 +70,14 @@ int pegaN(char* n){
     return converte(aux,i);
 }
 
+void corrigeErro(){
+
+}
 //pega a parcela a12 ate o espaco, depois le o resto, dividindo
-void pegaParcela(char* vet,char* temp,int j, int i){
-    //int j = 0;
+void pegaParcela(char* vet,char* temp, int* esp){
+    int j = 0;
     int c = 0;
+    int i = *esp;
     if(vet[i] == 32){
         i++;
     }
@@ -75,10 +85,12 @@ void pegaParcela(char* vet,char* temp,int j, int i){
         if (vet[i] == 32) {
             c = (i+1);
             temp[j] = '\0';
+            *esp = i;
             return;
         }
         else{
             temp[(j-c)] = vet[i];
+            temp[(j-c)+1] = '\0';
         }
         j++;
     }
@@ -103,18 +115,53 @@ void populaExemplo(){
 
 //para facilitar a programação
 void vetorExemplo(char* v) {
+    /*
     v[0] = 'a';
-    v[1] = 'b';
-    v[2] = '7';
+    v[1] = '1';
+    v[2] = '2';
+    v[3] = ' ';
+    v[4] = 'b';
+    v[5] = '3';
+    v[6] = '4';
+    v[7] = ' ';
+    v[8] = '5';
+    v[9] = '6';
+    v[10] = ' ';
+    v[11] = 'c';
+    v[12] = '7';
+    v[13] = '8';
+    v[14] = ' ';
+    v[15] = 'e';
+    v[16] = '1';
+    v[17] = '2';
+    v[18] = ' ';
+    v[19] = 'd';
+    v[20] = '9';
+    v[21] = '\0';
+     */
+    v[0] = 'a';
+    v[1] = '1';
+    v[2] = '2';
     v[3] = ' ';
     v[4] = 'b';
     v[5] = '3';
     v[6] = '4';
     v[7] = ' ';
     v[8] = 'c';
-    v[9] = '7';
-    v[10] = '8';
-    v[11] = '\0';
+    v[9] = '5';
+    v[10] = '6';
+    v[11] = ' ';
+    v[12] = 'd';
+    v[13] = '7';
+    v[14] = '8';
+    v[15] = ' ';
+    v[16] = 'e';
+    v[17] = '1';
+    v[18] = '2';
+    v[19] = ' ';
+    v[20] = 'd';
+    v[21] = '2';
+    v[22] = '\0';
 }
 
 void pegarNumerosVetor(){
@@ -184,42 +231,44 @@ void logicaParaSalvarNaMatriz(){
     char vet[num];
     char ver[num];
     int i = 0;
+    int esp = 0;
     vetorExemplo(vet);
     //scanf("%[^\n]", vet);
     //fflush(stdin);
-    pegaParcela(vet,ver,0,0);
+    pegaParcela(vet,ver,&esp);
     populaMatriz(ver,&i);
 
-    pegaParcela(vet,ver,0,3);
+    pegaParcela(vet,ver,&esp);
     populaMatriz(ver,&i);
 
-    pegaParcela(vet,ver,0,7);
+    pegaParcela(vet,ver,&esp);
     populaMatriz(ver,&i);
 
     imprimeMatriz();
 }
 
+void logicaAndar(){
+
+}
+
 int main() {
     puts("insira as variavies e numeros (conjuntos separados por espaço)");
-    char vet[num];
-    char ver[num];
+    char vet[num]; // vetor com as coisas efetivamente
+    char ver[num]; // vetor auxiliar
     int i = 0;
+    int esp = 0;
     vetorExemplo(vet);
     //scanf("%[^\n]", vet);
     //fflush(stdin);
-    pegaParcela(vet,ver,0,0);
-    if(buscaRepeteco(ver)) {
-        populaMatriz(ver, &i);
+    int a = -1,b = esp;
+    while(a != b){
+        pegaParcela(vet,ver,&esp);
+        if(buscaRepeteco(ver)) {
+            populaMatriz(ver, &i);
+        }
+        a = b;
+        b = esp;
     }
-    pegaParcela(vet,ver,0,3);
-    if(buscaRepeteco(ver)) {
-        populaMatriz(ver, &i);
-    }
-    pegaParcela(vet,ver,0,7);
-    if(buscaRepeteco(ver)) {
-        populaMatriz(ver, &i);
-    }
-
     imprimeMatriz();
 
 

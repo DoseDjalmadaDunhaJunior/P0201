@@ -114,9 +114,9 @@ void populaExemplo(){
 //para facilitar a programação
 void vetorExemplo(char* v) {
 
-    v[0] = 'a';
-    v[1] = '1';
-    v[2] = '2';
+    v[0] = '1';
+    v[1] = '2';
+    v[2] = ' ';
     v[3] = ' ';
     v[4] = 'b';
     v[5] = '3';
@@ -200,16 +200,16 @@ void populaMatriz(char* vet,int* a) {
     if(vet[0] <= '9' && vet[0] >= '0'){
         for (l; ((vet[l] <= '9') && (vet[l] >= '0')) ; l++) {
         }
-        resp[0] = converte(vet,k);
-        cout<<converte(vet,k)<<endl;
-    }
-    c = l;
-
-    for (j = 0; j < k; j++) {
-        resp[i] = -1;
-        vars[i][j] = vet[c];
-        c++;
-
+        resp[i] = converte(vet,k);
+        vars[i][0] = 32;
+        c = l;
+    }else {
+        c = l;
+        for (j = 0; j < k; j++) {
+            resp[i] = -1;
+            vars[i][j] = vet[c];
+            c++;
+        }
     }
     i++;
     vl = vl +1;
@@ -220,11 +220,14 @@ void imprimeMatriz(){
     int i = 0;
     int j = 0;
     for (i = 0; i < vl ; i++) {
-        for (j = 0; vars[i][j] != '\0' ; j++) {
-            cout<<vars[i][j];
-        }
+            if(vars[i][0] == 32){
+                printf("N(%i)", resp[i]);
+            }
+            else {
+                printf("V(%s)", vars[i]);
+            }
         puts("");
-    }
+        }
 }
 
 void imprimeCerto(){
@@ -252,6 +255,7 @@ int main() {
     }
     //cout<<vl<<endl;
     imprimeMatriz();
+
 
     return 0;
 }

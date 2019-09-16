@@ -12,6 +12,7 @@ int vl = 0;
 int vc = 0;
 char temps[num];
 int resp[num];
+int repet[num];
 int tempn;
 char v;
 int cg = 0;
@@ -29,17 +30,32 @@ int buscaRepeteco(char* vet){
     int k = tamanho(vet); // é o tamanho de vet
     int c = 0;
     int i = 0;
-    for (i = 0; i < vl; i++) {
-        for (int j = 0; vet[j] != '\0' ; j++) {
+    int j = 0;
+    int marc = 0;
+    for (i; i < vl; i++) {
+        for (j; vet[j] != '\0' ; j++) {
             if(vars[i][j] == vet[j]){
                 c++;
+                if((marc == 0) && (c == k)){
+                    repet[i] = (i-1);
+                    marc++;
+                }
             }
         }
     }
-    if(c == k){
+    if(vl == 0){
+        repet[i] = -1;
+        vl = vl +1 ;
+        return -1;
+    }
+    else if(c == k){
+        //repet[i] = (i-1);
+        vl = vl +1 ;
         return i;
     }
     else {
+        repet[i] = -1;
+        vl = vl +1 ;
         return -1;
     }
 }
@@ -114,16 +130,17 @@ void populaExemplo(){
 //para facilitar a programação
 void vetorExemplo(char* v) {
 
-    v[0] = '1';
-    v[1] = '2';
-    v[2] = ' ';
+    v[0] = 'a';
+    v[1] = '1';
+    v[2] = '2';
     v[3] = ' ';
-    v[4] = 'b';
-    v[5] = '3';
-    v[6] = '4';
+    v[4] = 'a';
+    v[5] = '1';
+    v[6] = '2';
     v[7] = ' ';
     v[8] = '5';
     v[9] = '6';
+
     v[10] = ' ';
     v[11] = 'c';
     v[12] = '7';
@@ -136,6 +153,7 @@ void vetorExemplo(char* v) {
     v[19] = 'd';
     v[20] = '9';
     v[21] = '\0';
+
     /*
     v[0] = 'a';
     v[1] = '1';
@@ -212,22 +230,27 @@ void populaMatriz(char* vet,int* a) {
         }
     }
     i++;
-    vl = vl +1;
     *a = i;
 }
 
-void imprimeMatriz(){
+//implementar melhor a logica de impressão, pois esta saindo meio fora de ordem
+void imprimeMatriz() {
     int i = 0;
     int j = 0;
-    for (i = 0; i < vl ; i++) {
-            if(vars[i][0] == 32){
-                printf("N(%i)", resp[i]);
-            }
-            else {
-                printf("V(%s)", vars[i]);
-            }
-        puts("");
+    for (i = 0; i < vl; i++) {
+        if (repet[i] != -1) {
+            printf("POSICAO: %i\n", repet[i]);
         }
+        if (vars[i][0] == 32) {
+            printf("N(%i)\n", resp[i]);
+        } else {
+            if (vars[i][0] == '\0') {
+
+            } else {
+                printf("V(%s)\n", vars[i]);
+            }
+        }
+    }
 }
 
 void imprimeCerto(){
@@ -254,6 +277,7 @@ int main() {
         b = esp;
     }
     //cout<<vl<<endl;
+    //cout<<vars[1];
     imprimeMatriz();
 
 
